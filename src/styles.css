@@ -2,57 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base rules carried over from the design handoff */
+/* Page-level rules from the design handoff */
 @layer base {
-  body {
-    margin: 0;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  a:hover {
-    color: inherit;
-  }
-
   html {
     -webkit-text-size-adjust: 100%;
     /* Keep anchored sections clear of the sticky header */
-    scroll-padding-top: 80px;
+    scroll-padding-top: 96px;
   }
 
-  @media (min-width: 768px) {
-    html {
-      scroll-padding-top: 120px;
-    }
+  body {
+    -webkit-font-smoothing: antialiased;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
     }
   }
 }
 
 @layer components {
-  /* Image frame: shows a soft brand tint while photos load */
+  /* Image frame: shows a soft green panel while a photo loads or if it fails */
   .ph {
-    @apply bg-gum-100;
+    background: linear-gradient(135deg, #2e5039 0%, #5e7f5a 55%, #9db398 100%);
   }
 
-  .ph > img {
-    @apply transition-transform duration-500;
+  .ph img {
+    transition: transform 0.6s ease;
   }
 
-  .group:hover .ph > img,
-  .group.ph:hover > img {
-    @apply scale-[1.03];
+  .group:hover .ph img {
+    transform: scale(1.04);
   }
 
   /* FAQ accordion */
   details > summary {
-    @apply cursor-pointer list-none;
+    list-style: none;
+    cursor: pointer;
   }
 
   details > summary::-webkit-details-marker {
@@ -64,15 +50,20 @@
   }
 
   .faq-icon {
-    @apply transition-transform duration-200;
+    transition: transform 0.2s ease;
   }
 
   details[open] .faq-icon {
-    @apply rotate-45;
+    transform: rotate(45deg);
+  }
+
+  /* Sticky header once the page has scrolled */
+  #site-header.scrolled {
+    box-shadow: 0 6px 24px -12px rgba(20, 38, 25, 0.35);
   }
 
   /* Invalid form fields after a failed submit */
   [aria-invalid='true'] {
-    @apply border-red-600;
+    @apply border-red-500;
   }
 }

@@ -6,7 +6,7 @@ const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || '';
 function initHeaderShadow() {
   const header = document.getElementById('site-header');
   if (!header) return;
-  const update = () => header.classList.toggle('shadow-md', window.scrollY > 8);
+  const update = () => header.classList.toggle('scrolled', window.scrollY > 10);
   update();
   window.addEventListener('scroll', update, { passive: true });
 }
@@ -145,6 +145,19 @@ function initQuoteForm() {
 }
 
 /* ---------------------------------------------------------------
+ * Images: if a photo fails to load, hide it so the .ph panel shows
+ * ------------------------------------------------------------- */
+function initImageFallback() {
+  const hide = (img) => {
+    img.style.opacity = '0';
+  };
+  document.querySelectorAll('img').forEach((img) => {
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) hide(img);
+    else img.addEventListener('error', () => hide(img), { once: true });
+  });
+}
+
+/* ---------------------------------------------------------------
  * Footer year
  * ------------------------------------------------------------- */
 function initYear() {
@@ -155,4 +168,5 @@ function initYear() {
 initHeaderShadow();
 initMobileMenu();
 initQuoteForm();
+initImageFallback();
 initYear();

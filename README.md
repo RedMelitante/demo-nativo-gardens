@@ -1,8 +1,12 @@
 # Nativo Gardens – website
 
 Single-page marketing site for **Nativo Gardens**, landscaping across the Yarra Valley
-and Melbourne's east. Built from the Claude Design handoff in `design/handoff/`
-(desktop and mobile boards share one responsive page).
+and Melbourne's east. Built from the design handoff in `design/handoff/v2/`
+(one responsive page for desktop and mobile).
+
+> **Pitch demo:** `index.html` has `<meta name="robots" content="noindex, nofollow">` so
+> search engines skip the demo. Remove it when the site goes live on the client's domain.
+> HTML comments marked `CONFIRM WITH CLIENT` flag copy still to be checked.
 
 **Stack:** static HTML · Tailwind CSS 3 · Vite 7 · ~3 KB of vanilla JS. No framework,
 no runtime dependencies.
@@ -31,14 +35,16 @@ Requires Node 22.12+.
 ## Project structure
 
 ```
-index.html                  Page markup (transcribed 1:1 from the design)
+index.html                  Page markup (from the design, with its CONFIRM WITH CLIENT notes)
 src/styles.css              Tailwind entry + small component rules (FAQ, image frames)
 src/main.js                 Mobile menu, sticky-header shadow, quote form, footer year
 tailwind.config.js          Design tokens: colours (gum, wattle, sand, bark) and fonts
-public/images/              Photos and logos (placeholders for now – see ASSETS.md)
-public/favicon.svg
-scripts/make-placeholders.py  Regenerates placeholder images
-design/handoff/             Original Claude Design export, kept for reference
+public/images/              Client photos, sample photos and logos (see ASSETS.md)
+public/favicon.png          Favicons cropped from the client logo
+public/apple-touch-icon.png
+design/handoff/v2/          Current design handoff (source of truth)
+design/handoff/v1/          First Claude Design export, kept for reference
+design/brand/               Client master logo file (not deployed)
 ```
 
 ## Design tokens
@@ -52,9 +58,8 @@ design/handoff/             Original Claude Design export, kept for reference
 | `font-display` | Fraunces (headings) |
 | `font-sans` | Inter (body) |
 
-The handoff's compiled stylesheet (with the exact hex values) was not part of the
-export, so palette values in `tailwind.config.js` are reconstructed. Update them
-there if the brand hex codes change; everything else follows.
+Values in `tailwind.config.js` are the exact hex codes from the design handoff,
+taken from the client's logo colours.
 
 ## Quote form
 
@@ -72,7 +77,9 @@ confirmation, but sends nothing.
 
 ## Before launch
 
-- [ ] Replace the placeholder images in `public/images/` (see [ASSETS.md](ASSETS.md))
+- [ ] Remove the `noindex, nofollow` robots meta tag
+- [ ] Replace the `sample-*.jpg` stock photos with client photos (see [ASSETS.md](ASSETS.md))
+- [ ] Resolve the `CONFIRM WITH CLIENT` notes in `index.html` (insurance, hours, service areas, email)
 - [ ] Set `VITE_FORM_ENDPOINT` in the hosting environment
-- [ ] Add absolute URLs to `og:image` / canonical once the domain is known
+- [ ] Point `og:image` at the live domain and add a canonical URL
 - [ ] Point the blog "Read article" links at real posts (currently sample articles)

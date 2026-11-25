@@ -8,7 +8,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "images:placeholders": "python3 scripts/make-placeholders.py",
     "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
