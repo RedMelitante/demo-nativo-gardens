@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base rules carried over from the design handoff */
+@layer base {
+  body {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  a:hover {
+    color: inherit;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Keep anchored sections clear of the sticky header */
+    scroll-padding-top: 80px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 120px;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Image frame: shows a soft brand tint while photos load */
+  .ph {
+    @apply bg-gum-100;
+  }
+
+  .ph > img {
+    @apply transition-transform duration-500;
+  }
+
+  .group:hover .ph > img,
+  .group.ph:hover > img {
+    @apply scale-[1.03];
+  }
+
+  /* FAQ accordion */
+  details > summary {
+    @apply cursor-pointer list-none;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details > summary:focus-visible {
+    @apply rounded-lg outline-none ring-2 ring-wattle-500 ring-offset-4 ring-offset-sand-50;
+  }
+
+  .faq-icon {
+    @apply transition-transform duration-200;
+  }
+
+  details[open] .faq-icon {
+    @apply rotate-45;
+  }
+
+  /* Invalid form fields after a failed submit */
+  [aria-invalid='true'] {
+    @apply border-red-600;
+  }
+}
