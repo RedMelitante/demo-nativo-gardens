@@ -1,0 +1,19 @@
+{
+  "name": "nativo-gardens",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Nativo Gardens – landscaping across the Yarra Valley & Melbourne's east",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "images:placeholders": "python3 scripts/make-placeholders.py"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.21",
+    "postcss": "8.5.33",
+    "tailwindcss": "3.4.19",
+    "vite": "7.3.8"
+  }
+}
