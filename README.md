@@ -9,7 +9,7 @@ no runtime dependencies.
 
 ## Getting started
 
-Requires Node 18+.
+Requires Node 22.12+ (Vite alone works on 20.19+; Wrangler needs 22.12+).
 
 ```bash
 npm install
@@ -20,6 +20,13 @@ npm run preview   # serve the production build
 
 `dist/` is a fully static site: deploy it to any static host (Netlify, Vercel,
 Cloudflare Pages, Railway static, S3, etc.).
+
+### Cloudflare Workers
+
+`wrangler.jsonc` deploys `dist/` as Workers static assets (no Worker script).
+In Cloudflare Workers Builds use build command `npm run build` and deploy command
+`npx wrangler deploy`. Locally: `npm run deploy` (requires `wrangler login`).
+Requires Node 22.12+.
 
 ## Project structure
 
